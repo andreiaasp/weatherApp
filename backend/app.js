@@ -1,38 +1,19 @@
 require("dotenv").config();
 var express = require("express");
-const axios = require("axios");
-const NodeCache = require("node-cache");
+const { fetchWeatherData } = require('./weatherService');
 var app = express();
 
 const port = process.env.PORT || 3000;
 const apiKey = process.env.openWeatherAPIKey;
-const cache = new NodeCache({ stdTTL: 1800 });
 
-app.get("/weather/:city", async (req, res) => {
+app.get("/api/weather/:city", async (req, res) => {
   try {
     const city_id = req.params.city;
     console.log(city_id);
 
-    const cachedData = cache.get(city_id);
+    const weatherData = await fetchWeatherData(city_id,apiKey);
 
-    if (cachedData) {
-
-      console.log("it was cached");
-      res.status(200).json(cachedData);
-
-    } else {
-
-      console.log("it was NOT cached");
-      const response = await axios.get(
-        `http://api.openweathermap.org/data/2.5/forecast?id=${city_id}&appid=${apiKey}`
-      );
-
-      const weatherData = response.data;
-      cache.set(city_id, weatherData);
-
-      res.status(200).json(weatherData);
-
-    }
+    res.json(weatherData);
   } catch (error) {
     console.error(error);
     res
