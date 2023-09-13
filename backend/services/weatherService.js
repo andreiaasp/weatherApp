@@ -26,7 +26,7 @@ async function fetchWeatherData(city_id, apiKey) {
     }
 
   } catch (error) {
-    throw error; // You can handle errors here or in the calling function
+    throw error; 
   }
 }
 
