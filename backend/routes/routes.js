@@ -1,5 +1,6 @@
 const express = require('express');
-const { fetchWeatherData } = require('./services/weatherService');
+const { fetchWeatherData } = require('../services/weatherService');
+const apiLimiter = require('../middleware/rate-limit');
 const { requiresAuth } = require('express-openid-connect');
 const router = express.Router();
 
@@ -13,7 +14,7 @@ router.get('/profile', requiresAuth(), (req, res) => {
   res.send(JSON.stringify(req.oidc.user));
 });
 
-router.get('/api/weather/:city', async (req, res) => {
+router.get('/api/weather/:city', apiLimiter, async (req, res) => {
   try {
     const city_id = req.params.city;
     console.log(city_id);

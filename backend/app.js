@@ -1,8 +1,8 @@
 require('dotenv').config();
 const express = require('express');
 const { auth } = require('express-openid-connect');
-const config = require('./auth-config');
-const routes = require('./routes');
+const config = require('./config/auth-config');
+const routes = require('./routes/routes');
 const app = express();
 
 app.use(auth(config));
