@@ -25,6 +25,8 @@ export const Auth0ProviderWithNavigate = ({ children }) => {
       clientId={clientId}
       authorizationParams={{
         redirect_uri: redirectUri,
+        audience: "http://localhost:8080/api",
+        scope: "read:weather",
       }}
     >
       {children}

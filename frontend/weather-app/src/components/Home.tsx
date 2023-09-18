@@ -12,25 +12,41 @@ import {
   kelvinToCelsius,
   formatUnixTimestamp,
 } from "./../utils/utils";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Home = () => {
+  const { isAuthenticated, getAccessTokenSilently } = useAuth0();
+
   const [data, setData] = useState<CityObj[]>([]);
   const [city, setCity] = useState<CityObj>();
   const [isLoading, setIsLoading] = useState(true);
 
   const cityIds = [2267094, 2267056, 2740636, 2735941, 2268337];
 
-  function fetchCities() {
+  async function fetchCities() {
+    const domain = "dev-byh400on787b1fda.us.auth0.com";
+
     const baseUrl = "http://localhost:8080/api/weather/";
     const targetCityId = 2267056;
     const otherCities: CityObj[] = [];
+
+    const accessToken = await getAccessTokenSilently({
+      authorizationParams: {
+        audience: `http://localhost:8080/api`,
+        scope: "read:weather",
+      },
+    });
 
     Promise.all(
       cityIds.map((cityId) => {
         const apiUrl = baseUrl + cityId;
 
         return axios
-          .get(apiUrl)
+          .get(apiUrl, {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          })
           .then((response) => {
             const cityData = response.data.city;
 
