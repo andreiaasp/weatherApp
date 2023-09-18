@@ -9,12 +9,9 @@ async function fetchWeatherData(city_id, apiKey) {
     const cachedData = cache.get(city_id);
 
     if (cachedData) {
-
-      console.log("it was cached");
       return cachedData;
 
     } else {
-      console.log("it was NOT cached");
       const response = await axios.get(
         `http://api.openweathermap.org/data/2.5/forecast?id=${city_id}&appid=${apiKey}`
       );
