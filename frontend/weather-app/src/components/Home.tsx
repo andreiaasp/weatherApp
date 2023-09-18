@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import cloudy from "./../img/cloudy.png";
+import cloudysun from "./../img/cloudysun.png";
+import clouds from "./../img/clouds.png";
 import loadingIcon from "./../img/loading.png";
 import Card from "./Card";
 import axios from "axios";
@@ -77,7 +78,6 @@ const Home = () => {
       }`}
     >
       {isLoading ? (
-        // Render loading icon when isLoading is true
         <img
           className="w-1/4 self-center"
           src={loadingIcon}
@@ -96,7 +96,11 @@ const Home = () => {
                 </strong>
                 <span>Today in {checkName(city?.city.name)}</span>
               </div>
-              <img className="w-1/2" src={cloudy} alt="weather icon" />
+              <img
+                className="w-1/2"
+                src={city?.list[0].clouds.all > 50 ? clouds : cloudysun}
+                alt="weather icon"
+              />
               <div className="sm:justify-self-start self-center sm:border-l-2 sm:border-white sm:border-dotted ">
                 <p className="font-bold text-5xl lg:text-8xl sm:text-5xl text-white col-span-1 p-8 sm:p-10">
                   {kelvinToCelsius(city?.list[0].main.temp)}
