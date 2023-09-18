@@ -41,11 +41,6 @@ code {
 
 .container-bg {
   height: 100vh;
-  background: linear-gradient(
-    111.5deg,
-    rgb(20, 100, 196) 0.4%,
-    rgb(33, 152, 214) 100.2%
-  );
 }
 
 .login-container {

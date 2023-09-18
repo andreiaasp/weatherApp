@@ -60,17 +60,17 @@ const Login = () => {
   };
 
   return (
-    <div className="container-bg">
+    <div className="bg-gradient-to-r from-cyan-500 to-teal-500">
       <div className="wrapper">
         <div className="flex flex-col items-center justify-center h-screen">
-          <h1 className="at-item  mb-4 text-3xl font-thin leading-none tracking-tight text-gray-700 md:text-5xl lg:text-6xl dark:text-white">
-            Welcome to WeatherApp 1.0.0
+          <h1 className="at-item text-white mb-4 text-3xl font-thin leading-none tracking-tight text-gray-700 md:text-5xl lg:text-6xl">
+            Welcome to WeatherApp
           </h1>
           <div className="w-1/3" ref={containerRef}></div>
           <button
             onClick={() => handleLogin()}
             type="button"
-            className="self-end mx-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center mr-4 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            className="self-end mx-2 text-cyan-500 bg-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center mr-4 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
             <svg
               className="w-5 h-5"
@@ -81,9 +81,9 @@ const Login = () => {
             >
               <path
                 stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 d="M1 5h12m0 0L9 1m4 4L9 9"
               />
             </svg>

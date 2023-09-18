@@ -2,7 +2,6 @@ var formattedTime: string;
 
 export function kelvinToCelsius(kelvin: number) {
   const celsius = kelvin - 273.15;
-  console.log(celsius.toFixed(1) + " ºC");
   return `${celsius.toFixed(1)} ºC`;
 }
 
