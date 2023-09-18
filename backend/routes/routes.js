@@ -16,7 +16,6 @@ router.get('/profile', validateAccessToken, (req, res) => {
 });
 
 router.get('/api/weather/:city', apiLimiter, validateAccessToken, async (req, res) => {
-  console.log(req.oidc.accessToken)
   try {
     const city_id = req.params.city;
 
