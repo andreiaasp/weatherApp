@@ -1,7 +1,6 @@
 const express = require('express');
 const { fetchWeatherData } = require('../services/weatherService');
 const apiLimiter = require('../middleware/rate-limit');
-const { requiresAuth } = require('express-openid-connect');
 const router = express.Router();
 const { validateAccessToken } = require("../middleware/auth0.middleware.js");
 
@@ -17,6 +16,7 @@ router.get('/profile', validateAccessToken, (req, res) => {
 });
 
 router.get('/api/weather/:city', apiLimiter, validateAccessToken, async (req, res) => {
+  console.log(req.oidc.accessToken)
   try {
     const city_id = req.params.city;
 
